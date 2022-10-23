@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col-12">
+        <div [classList]="error ? 'alert alert-danger': '' ">
+            {{error}}
+        </div>
+        <app-auth-form (formEmitter)="login($event)">
+            <span>Login</span>
+            <span regOrLog>Don't have an account? <a class="text-danger" routerLink="../sign-up">Sign up</a></span>
+        </app-auth-form>
+    </div>
+</div>
