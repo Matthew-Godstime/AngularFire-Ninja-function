@@ -1,15 +1,42 @@
-<!-- <div class="row">
+<div class="row">
     <div class="col-12">
-        <div class="float-end">
-            {{user ? user : ''}}
+        <header>
+            <nav>
+                <span class="float-start">Current User: {{user}}</span>
+                <a #btn class="add-request">add request</a>
+                <a *ngIf="!user" routerLink="/auth/login">Login</a>
+                <a *ngIf="!user" routerLink="/auth/sign-up">Sign up</a>
+                <button *ngIf="user" (click)="signOut()">sign out</button>
+            </nav>
+        </header>
+        <!-- new request modal -->
+        <div #menu class="new-request">
+            <div class="my-modal">
+                <h2>Request a Tutorial</h2>
+                <form [formGroup]="reqForm" (ngSubmit)="addRequest()">
+                    <input type="text" name="request" placeholder="Request..." formControlName="text">
+                    <button type="submit">Submit Request</button>
+                    <p class="error"></p>
+                </form>
+            </div>
         </div>
+    
+    
+    
+        <!-- <div class="row">
+            <div class="col-12">
+                <div class="float-end">
+                    {{user ? user : ''}}
+                </div>
+            </div>
+        </div> -->
+    
+        <app-card></app-card>
+        <!-- <button (click)="callCloudFunction()">say Hello</button> -->
+    
+        <!-- <div>
+            <strong>Result: {{result}}</strong><br>
+            <strong>Error: {{error}}</strong>
+        </div> -->
     </div>
-</div> -->
-
-<app-card></app-card>
-<!-- <button (click)="callCloudFunction()">say Hello</button> -->
-
-<!-- <div>
-    <strong>Result: {{result}}</strong><br>
-    <strong>Error: {{error}}</strong>
-</div> -->
+</div>

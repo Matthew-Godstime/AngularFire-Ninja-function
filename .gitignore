@@ -48,3 +48,6 @@ Thumbs.db
 src/environments/environment.prod.ts
 src/environments/environment.ts
 .firebaserc
+functions/lib/src/ninja-cloud.json
+.gitignore
+functions/src/ninja-cloud.json

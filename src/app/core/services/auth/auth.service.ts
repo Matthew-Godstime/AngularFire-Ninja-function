@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, User, UserCredential } from '@angular/fire/auth';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { getFunctions, HttpsCallable, httpsCallable } from '@angular/fire/functions';
+import { BehaviorSubject } from 'rxjs';
 import { FormData } from '../../model/FormData';
 
 @Injectable({
@@ -44,6 +45,16 @@ export class AuthService {
     return signInWithEmailAndPassword(this.auth, email, password);
   }
   
+
+  /**
+   * callCloudFunction: That add new request to the list
+   */
+  public addRequest(msg: string): HttpsCallable<unknown, unknown> {
+    const functions = getFunctions()
+    const request = httpsCallable(functions, msg);
+    return request;
+  }
+
   /**
    * signOut
    */

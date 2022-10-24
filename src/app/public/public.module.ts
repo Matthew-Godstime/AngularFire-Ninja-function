@@ -5,6 +5,7 @@ import { PublicRoutingModule } from './public-routing.module';
 import { HomePageComponent } from './home-page/home-page.component';
 import { HomeRootComponent } from './home-root/home-root.component';
 import { CardComponent } from './card/card.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { CardComponent } from './card/card.component';
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     PublicRoutingModule
   ]
 })

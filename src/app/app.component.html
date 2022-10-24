@@ -1,25 +1,3 @@
-<div class="container">
-    <header>
-        <div class="text-center">
-            <span>{{user}}</span>
-        </div>
-        <nav>
-            <a #btn class="add-request">add request</a>
-            <a *ngIf="!user" routerLink="/auth/login">Login</a>
-            <a *ngIf="!user" routerLink="/auth/sign-up">Sign up</a>
-            <button *ngIf="user" (click)="signOut()">sign out</button>
-        </nav>
-    </header>
-    <!-- new request modal -->
-    <div #menu class="new-request">
-        <div class="modal">
-            <h2>Request a Tutorial</h2>
-            <form>
-                <input type="text" name="request" placeholder="Request...">
-                <button>Submit Request</button>
-                <p class="error"></p>
-            </form>
-        </div>
-    </div>
+<div class="container-fluid">
     <router-outlet></router-outlet>
 </div>
