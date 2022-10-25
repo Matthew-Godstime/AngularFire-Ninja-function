@@ -37,13 +37,17 @@ export class CardComponent implements OnInit {
     const upvote = this.auth.callable("upvote");
     upvote({ reqId }).catch(error => {
       this.error = error.message;
+      // Toggle the error notification
+      interval(1000).pipe(take(4)).subscribe({
+        complete: () => {
+          this.error = null;
+        },
+        next(value) {
+          console.log(value);
+
+        },
+      })
     });
-    // Toggle the error notification
-    interval(1000).pipe(take(4)).subscribe({
-      complete: () => {
-        this.error = null
-      }
-    })
   }
 
 }

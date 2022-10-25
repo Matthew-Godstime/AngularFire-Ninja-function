@@ -1,7 +1,6 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '@angular/fire/auth';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
-import { ToggleDirective } from 'src/app/public/toggle.directive';
 
 
 @Component({
@@ -20,7 +19,6 @@ export class HomePageComponent implements OnInit {
 
   constructor(
     private readonly auth: AuthService,
-    private readonly toggle: ToggleDirective,
   ) { }
 
   /**
@@ -76,7 +74,7 @@ export class HomePageComponent implements OnInit {
    */
   public addRequest(text: string): void {
     const request = this.auth.callable("request");
-    request({ text }).then((result: any) => {
+    request(text).then((result: any) => {
       this.result = result.data;
       this.dis = false;
     }).catch(error => {

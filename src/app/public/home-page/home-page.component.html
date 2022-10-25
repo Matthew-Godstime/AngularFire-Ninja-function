@@ -3,17 +3,16 @@
         <header>
             <nav>
                 <span class="float-start">Current User: {{user}}</span>
-                <a (click)="toggleModel($event)">add request</a>
+                <a class="me-3" (click)="toggleModel($event)">add request</a>
                 <a *ngIf="!user" routerLink="/auth/login">Login</a>
                 <a *ngIf="!user" routerLink="/auth/sign-up">Sign up</a>
                 <button *ngIf="user" (click)="signOut()">sign out</button>
             </nav>
         </header>
-        <app-modal (formData)="addRequest($event)" appToggle [classList]="dis ? 'new-request open': 'new-request'"
+        <app-modal (formData)="addRequest($event)" [classList]="dis ? 'new-request open': 'new-request'"
             (click)="toggleModel($event)">
         </app-modal>
         <p [classList]="error ? 'alert alert-danger error text-center': '' ">{{ error }}</p>
-
         <app-card></app-card>
     </div>
 </div>
