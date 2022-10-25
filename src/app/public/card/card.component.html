@@ -1,12 +1,15 @@
 <section class="content">
     <h1>Tutorial Requests</h1>
+    <div [classList]="error ? 'alert alert-danger error': '' ">
+        {{ error }}
+    </div>
     <ul class="request-list"
     *ngFor="let request of requests">
         <li>
             <span class="text">{{ request.text }}</span>
             <div>
                 <span class="votes">{{ request.upvotes}}</span>
-                <i class="material-icons upvote">arrow_upward</i>
+                <i class="material-icons upvote" (click)="upVoteRequest(request.id)">arrow_upward</i>
             </div>
         </li>
     </ul>

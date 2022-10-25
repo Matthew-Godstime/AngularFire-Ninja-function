@@ -1,5 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
-import { ToggleDirective } from './toggle.directive';
+import { ToggleDirective } from './public/toggle.directive';
 
 @Component({
   selector: 'app-root',

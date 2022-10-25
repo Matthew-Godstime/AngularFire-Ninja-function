@@ -5,11 +5,6 @@ import { AfterViewInit, Directive, ElementRef, HostBinding, HostListener, Input,
 })
 export class ToggleDirective {
 
-  @Input() btn!: HTMLElement;
-  @Input() menu!: HTMLElement;
-  private isReady: boolean = false;
-  private btn2!: HTMLElement
-  private menu2!: HTMLElement
   @ViewChild('div') div: any;
   constructor(private el: ElementRef<HTMLElement>) { }
 
@@ -25,7 +20,7 @@ export class ToggleDirective {
     })
   }
 
-  @HostListener('click', ['$event']) onClick() {
+  @HostListener('click', ['$event']) onClick(event: Event) {
     // this.el.nativeElement.classList.add('open')
     // // e.classList.add('open');
     // console.log("menu", this.menu);

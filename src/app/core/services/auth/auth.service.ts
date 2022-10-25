@@ -45,20 +45,20 @@ export class AuthService {
     return signInWithEmailAndPassword(this.auth, email, password);
   }
   
-
-  /**
-   * callCloudFunction: That add new request to the list
-   */
-  public addRequest(msg: string): HttpsCallable<unknown, unknown> {
-    const functions = getFunctions()
-    const request = httpsCallable(functions, msg);
-    return request;
-  }
-
   /**
    * signOut
    */
   public signOut(): Promise<void> {
     return signOut(this.auth);
   }
+
+  /**
+   * callCloudFunction: That that handles all callable function requests
+   */
+  public callable(name: string): HttpsCallable<unknown, unknown> {
+    const functions = getFunctions()
+    const request = httpsCallable(functions, name);
+    return request;
+  }
+
 }

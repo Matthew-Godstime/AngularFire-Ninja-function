@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuerySnapshot, DocumentData } from '@angular/fire/firestore';
+import { interval, take } from 'rxjs';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { FirestoreService } from 'src/app/core/services/firestore/firestore.service';
 import { ReqData } from './reqData';
 
@@ -11,7 +13,12 @@ import { ReqData } from './reqData';
 export class CardComponent implements OnInit {
 
   public requests: ReqData[] = [];
-  constructor(private readonly firestore: FirestoreService) { }
+  public error!: string | null;
+
+  constructor(
+    private readonly firestore: FirestoreService,
+    private readonly auth: AuthService
+  ) { }
 
   ngOnInit(): void {
     this.firestore.requests((snapshots: QuerySnapshot<DocumentData>) => {
@@ -20,6 +27,22 @@ export class CardComponent implements OnInit {
         requests.push({ ...docs.data(), id: docs.id } as ReqData);
       })
       this.requests = requests;
+    })
+  }
+
+  /**
+   * upVoteRequest method: Send's a callable request to up-vote the given tutorial
+   */
+  public upVoteRequest(reqId: string) {
+    const upvote = this.auth.callable("upvote");
+    upvote({ reqId }).catch(error => {
+      this.error = error.message;
+    });
+    // Toggle the error notification
+    interval(1000).pipe(take(4)).subscribe({
+      complete: () => {
+        this.error = null
+      }
     })
   }
 
